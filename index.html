@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Red Ghost - Официальный сайт</title>
+    <style>
+        /* ========== ПОДКЛЮЧЕНИЕ ШРИФТОВ ========== */
+        @font-face {
+            font-family: 'SabFont';
+            src: url('fonts/sab.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'SabFont2';
+            src: url('fonts/sab2.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        /* Третий шрифт — для заголовков страниц */
+        @font-face {
+            font-family: 'SabFont3';
+            src: url('fonts/sab3.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        /* ========== ОБЩИЕ СТИЛИ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SabFont2', Arial, sans-serif;
+            color: #ffffff;
+            line-height: 1.5;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            transition: background-image 0.5s ease-in-out;
+            background-color: #0a0a0a;
+        }
+
+        /* Затемнение фона для читаемости текста */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        /* ========== ШАПКА ========== */
+        .header {
+            padding: 20px 40px;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #0a0a0a;
+        }
+
+        .logo {
+            font-family: 'SabFont', Arial, sans-serif;
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #cc0000;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            font-family: 'SabFont', Arial, sans-serif;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            color: #ff3333;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #cc0000;
+        }
+
+        /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
+        .main-content {
+            min-height: 70vh;
+            padding: 60px 40px;
+        }
+
+        .page-title {
+            font-family: 'SabFont3', Arial, sans-serif;
+            font-size: 3rem;
+            color: #ffffff;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #cc0000;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            border-left: 4px solid #ff0000;
+            padding-left: 20px;
+        }
+
+        .content-text {
+            font-family: 'SabFont2', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* ========== СТИЛИ ДЛЯ МЕДИА (ГАЛЕРЕЯ) ========== */
+        .media-scroll-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .media-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            scroll-margin-top: 100px;
+        }
+
+        .media-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .media-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .media-image:hover {
+            transform: scale(1.02);
+        }
+
+        .media-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .media-description {
+            flex: 1;
+            font-family: 'SabFont2', Arial, sans-serif;
+        }
+
+        .media-description h3 {
+            font-family: 'SabFont', Arial, sans-serif;
+            font-size: 2rem;
+            color: #ff3333;
+            text-shadow: 0 0 5px #ff0000;
+            margin-bottom: 15px;
+        }
+
+        .media-description p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        /* Чередование картинок */
+        .media-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* ========== ПОДВАЛ ========== */
+        .footer {
+            border-top: 1px solid rgba(255, 0, 0, 0.3);
+            padding: 20px 40px;
+            text-align: center;
+            font-family: 'SabFont2', Arial, sans-serif;
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Кнопка поддержки */
+        .support-button {
+            display: inline-block;
+            background: #ff0000;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'SabFont', Arial, sans-serif;
+            transition: all 0.3s ease;
+        }
+        .support-button:hover {
+            background: #cc0000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+        
+        /* Стили для переключателя языков (красный неон) */
+        .language-switcher {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid #ff0000;
+            color: #ff6666;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'SabFont2', Arial, sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            background: #ff0000;
+            color: #fff;
+            box-shadow: 0 0 8px #ff0000;
+            text-shadow: 0 0 4px #fff;
+        }
+        .lang-btn.active {
+            background: #ff0000;
+            color: #fff;
+            box-shadow: 0 0 12px #ff0000;
+            border-color: #ff3333;
+        }
+
+        /* ========== АДАПТАЦИЯ ========== */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            .nav-menu {
+                gap: 20px;
+                justify-content: center;
+            }
+            .nav-menu a {
+                font-size: 1rem;
+            }
+            .main-content {
+                padding: 30px 20px;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+            .content-text {
+                font-size: 1rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .media-item {
+                flex-direction: column !important;
+                gap: 20px;
+                margin-bottom: 50px;
+            }
+            .media-description h3 {
+                font-size: 1.5rem;
+            }
+            .media-description p {
+                font-size: 1rem;
+            }
+        }
+        /* ========== СТИЛИ ДЛЯ ССЫЛОК В КОНТАКТАХ ========== */
+        .contact-link {
+            color: #ff6666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px dashed rgba(255, 0, 0, 0.3);
+        }
+        .contact-link:hover {
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+            border-bottom-color: #ff0000;
+        }
+        
+        /* ========== ЗАСТАВКА ========== */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 1s ease;
+        }
+        .splash-content {
+            text-align: center;
+            font-family: 'SabFont', Arial, sans-serif;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        .splash-content h1 {
+            font-size: 4rem;
+            color: #ff0000;
+            text-shadow: 0 0 20px #ff0000, 0 0 40px #cc0000;
+            letter-spacing: 4px;
+        }
+        .splash-content p {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #ff6666;
+            letter-spacing: 2px;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 30px #ff0000; }
+            100% { opacity: 0.6; transform: scale(0.98); }
+        }
+    </style>
+</head>
+<body id="app-body">
+
+    <!-- ЗАСТАВКА -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <h1>RED GHOST</h1>
+            <p>THE LAST WAR</p>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="logo">RED GHOST</div>
+        <div class="nav-menu">
+            <a data-page="main">Главная</a>
+            <a data-page="project">Проект</a>
+            <a data-page="media">Медиа</a>
+            <a data-page="jobs">Вакансии</a>
+            <a data-page="startup">Стартап</a>
+            <a data-page="contacts">Контакты</a>
+        </div>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <h1 class="page-title" id="page-title">Главная</h1>
+        <div id="page-text">
+            <p class="content-text">Добро пожаловать на официальный сайт Red Ghost.</p>
+            <p class="content-text">Здесь будет основная информация о проекте.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2025 Red Ghost — игровой стартап. Разработка игры.
+    </div>
+
+    <script>
+        // ЗАСТАВКА: плавно исчезает через 2.5 секунды
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                let splash = document.getElementById('splash-screen');
+                if (splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(function() {
+                        splash.style.display = 'none';
+                    }, 1000);
+                }
+            }, 2500);
+        });
+
+        // ========== ФОНОВЫЕ ИЗОБРАЖЕНИЯ ==========
+        const backgrounds = {
+            main: 'images/backgrounds/main-bg.jpg',
+            project: 'images/backgrounds/project-bg.jpg',
+            media: 'images/backgrounds/media-bg.jpg',
+            jobs: 'images/backgrounds/jobs-bg.jpg',
+            startup: 'images/backgrounds/startup-bg.jpg',
+            contacts: 'images/backgrounds/contacts-bg.jpg'
+        };
+
+        // ========== ДАННЫЕ ДЛЯ МЕДИА (НА РУССКОМ) ==========
+        const mediaItemsRu = [
+            { img: 'images/gallery/strekoza.jpg', title: 'Стрекоза', desc: 'Класс: Лёгкий истребитель разведки.<br>Назначение: разведка, перехват, быстрая атака.<br>Размеры: до 30 м.<br>Экипаж: 1 пилот.<br>Особенность: высокая манёвренность, малая заметность.' },
+            { img: 'images/gallery/mul.jpg', title: 'МУЛ', desc: 'Класс: Транспортный корабль.<br>Назначение: перевозка грузов.<br>Размеры: 100–1000 м.<br>Экипаж: 1–5 человек (онлайн).<br>Особенность: модульная конструкция, средняя заметность.' },
+            { img: 'images/gallery/cruiser.jpg', title: 'Крейсер', desc: 'Класс: Тяжёлый боевой корабль.<br>Назначение: самостоятельные операции, флагман соединения, подавление планетарной обороны.<br>Размеры: 600–1200 м.<br>Экипаж: 1–10 игроков.<br>Особенность: мощное вооружение, средняя/высокая заметность.' },
+            { img: 'images/gallery/assault.jpg', title: 'Десантный', desc: 'Класс: Десантно-штурмовой корабль.<br>Назначение: высадка, абордаж.<br>Размеры: 200–600 м.<br>Экипаж управления: 1–2 игрока.<br>Десант: 50–500 человек.<br>Особенность: средняя заметность, усиленная броня.' },
+            { img: 'images/gallery/dreadnought.jpg', title: 'Дредноут', desc: 'Класс: Сверхтяжёлый линкор.<br>Назначение: флагман флота, подавление любого противника, уничтожение планет.<br>Размеры: 2000–8000 м.<br>Экипаж управления: 1–20 игроков (онлайн).<br>Особенность: высочайшая заметность, абсолютная огневая мощь, щиты и броня высшего уровня.' },
+            { img: 'images/gallery/annihilator.jpg', title: 'НЕИЗВЕСТЕН', desc: 'Классификация: Дредноут-носитель класса «НЕИЗВЕСТЕН».<br>Тип: НЕИЗВЕСТЕН + Дредноут + Осадный корабль.<br>Размер: По расшифровке с подбитых кораблей класса РЭБ размер НЕИЗВЕСТЕН — класс «НЕИЗВЕСТЕН».<br>Масса: НЕИЗВЕСТНА.<br>Экипаж: НЕИЗВЕСТЕН.<br>Назначение: НЕИЗВЕСТНО.<br>Особенность: НЕИЗВЕСТНЫ.' }
+        ];
+
+        const mediaItemsEn = [
+            { img: 'images/gallery/strekoza.jpg', title: 'Dragonfly', desc: 'Class: Light reconnaissance fighter.<br>Role: Reconnaissance, interception, fast attack.<br>Size: up to 30 m.<br>Crew: 1 pilot.<br>Features: High maneuverability, low visibility.' },
+            { img: 'images/gallery/mul.jpg', title: 'MULE', desc: 'Class: Transport ship.<br>Role: Cargo transportation.<br>Size: 100–1000 m.<br>Crew: 1–5 players (online).<br>Features: Modular design, medium visibility.' },
+            { img: 'images/gallery/cruiser.jpg', title: 'Cruiser', desc: 'Class: Heavy combat ship.<br>Role: Independent operations, squadron flagship, planetary defense suppression.<br>Size: 600–1200 m.<br>Crew: 1–10 players.<br>Features: Powerful armament, medium/high visibility.' },
+            { img: 'images/gallery/assault.jpg', title: 'Assault Ship', desc: 'Class: Assault-landing ship.<br>Role: Landing, boarding.<br>Size: 200–600 m.<br>Command crew: 1–2 players.<br>Troops: 50–500 soldiers.<br>Features: Medium visibility, reinforced armor.' },
+            { img: 'images/gallery/dreadnought.jpg', title: 'Dreadnought', desc: 'Class: Super-heavy battleship.<br>Role: Fleet flagship, suppression of any enemy, planetary destruction.<br>Size: 2000–8000 m.<br>Command crew: 1–20 players (online).<br>Features: Extreme visibility, absolute firepower, ultimate shields and armor.' },
+            { img: 'images/gallery/annihilator.jpg', title: 'UNKNOWN', desc: 'Classification: Dreadnought-carrier class «UNKNOWN».<br>Type: UNKNOWN + Dreadnought + Siege Ship.<br>Size: According to decryption from downed EW ships, size UNKNOWN — class «UNKNOWN».<br>Mass: UNKNOWN.<br>Crew: UNKNOWN.<br>Role: UNKNOWN.<br>Features: UNKNOWN.' }
+        ];
+
+        const mediaItemsZh = [
+            { img: 'images/gallery/strekoza.jpg', title: '蜻蜓', desc: '级别：轻型侦察战斗机。<br>任务：侦察、拦截、快速攻击。<br>尺寸：长达 30 米。<br>船员：1 名飞行员。<br>特点：高机动性，低可见性。' },
+            { img: 'images/gallery/mul.jpg', title: '骡子', desc: '级别：运输船。<br>任务：货物运输。<br>尺寸：100–1000 米。<br>船员：1–5 名玩家（在线）。<br>特点：模块化设计，中等可见性。' },
+            { img: 'images/gallery/cruiser.jpg', title: '巡洋舰', desc: '级别：重型战舰。<br>任务：独立行动，分舰队旗舰，压制行星防御。<br>尺寸：600–1200 米。<br>船员：1–10 名玩家。<br>特点：强大的武器，中/高可见性。' },
+            { img: 'images/gallery/assault.jpg', title: '突击舰', desc: '级别：突击登陆舰。<br>任务：登陆，登船作战。<br>尺寸：200–600 米。<br>指挥船员：1–2 名玩家。<br>部队：50–500 名士兵。<br>特点：中等可见性，强化装甲。' },
+            { img: 'images/gallery/dreadnought.jpg', title: '无畏舰', desc: '级别：超重型战列舰。<br>任务：舰队旗舰，压制任何敌人，摧毁行星。<br>尺寸：2000–8000 米。<br>指挥船员：1–20 名玩家（在线）。<br>特点：极高可见性，绝对火力，终极护盾和装甲。' },
+            { img: 'images/gallery/annihilator.jpg', title: '未知', desc: '分类：无畏舰-母舰级 «未知».<br>类型：未知 + 无畏舰 + 攻城舰。<br>尺寸：根据被击落的电子战舰船解密，尺寸未知 — 级别 «未知».<br>质量：未知。<br>船员：未知。<br>任务：未知。<br>特点：未知。' }
+        ];
+
+        // ========== ТЕКСТЫ СТРАНИЦ (РУССКИЙ) ==========
+        const pagesRu = {
+            main: { title: "Главная", text: `<p class="content-text">Добро пожаловать на официальный сайт Red Ghost.</p><p class="content-text">Red Ghost — независимый игровой стартап, создающий атмосферную игру о космосе.</p><p class="content-text">Мы объединяем технологии, творчество и страсть к космосу, чтобы подарить игрокам уникальный опыт.</p><p class="content-text">Следите за развитием проекта — впереди много интересного!</p>` },
+            project: { title: "Проект", text: `<p class="content-text">THE LAST WAR — это проект, который объединяет технологии и творчество.</p><p class="content-text">Здесь ты сможешь узнать подробности о концепции, этапах разработки и планах на будущее.</p><p class="content-text">И так. Что же уже готово---<br>Карта двигательных систем с топливными цепочками.<br>Карта кораблей.<br>Карты оружий ближнего и дальнего боя.<br>Карта систем РЭБ (радио-электронной борьбы).<br>Карты систем щитов кораблей.<br>Карта энергетических систем кораблей.<br>Полный каталог двигателей (не путать с картами).<br>Полный каталог вооружения (не путать с картами).</p><p class="content-text">Над чем работа идёт сейчас---<br>На данный момент идёт работа над лором и сценарием игры.<br>Идёт работа над каталогом кораблей, названиями их в классификаторах (а сами имена кораблям будут давать игроки их купившие), размерами и прочими ТТХ.<br>И пока что всё т.к. не хватает рук для работы над всем сразу.</p>` },
+            media: { title: "Медиа", text: `<p class="content-text">Здесь будет предоставлена медиа информация по кораблям, экипажу и транспорту игры.<br>В связи с тем, что сейчас у нас нет художника, эскизы кораблей предоставить мы не можем.</p><div class="media-scroll-container" id="media-container"></div>` },
+            jobs: { title: "Вакансии", text: `<p class="content-text">Мы всегда ищем талантливых людей в команду Red Ghost.</p><p class="content-text">Актуальные вакансии: разработчики, дизайнеры, менеджеры.</p><p class="content-text">На данном этапе требуются:<br>Художник -<br>Требование: -Знания работы в adobe photoshop!<br>3D дизайнер -<br>Требования: - Знания и владения программами по типу Blender, 3D Max, Maya, ZBrush.</p><p class="content-text">Если хочешь стать частью проекта — напиши нам через раздел "Контакты" с указанием вакансии.</p>` },
+            startup: { title: "Стартап", text: `<p class="content-text">Red Ghost — это не просто проект, а стартап с амбициозными целями.</p><p class="content-text">Здесь будет информация о развитии, инвестициях, партнёрах и дорожной карте.</p><p class="content-text">Здесь ты можешь помочь чем можешь дабы ускорить работу над проектом.<br>Любая помощь от вас помогает привлекать и нанимать больше людей в проект, а так же оплачивать их работу.</p><p class="content-text">На данном этапе помочь проекту можно по ссылке донатов моего канала<br><a href="https://www.donationalerts.com/r/duskst" class="support-button" target="_blank">Поддержать проект</a></p>` },
+            contacts: { title: "Контакты", text: `<p class="content-text">Свяжитесь со мной можно любым удобным способом:</p><p class="content-text">📧 Email: <a href="mailto:supportdusk@gmail.com" class="contact-link">supportdusk@gmail.com</a></p><p class="content-text">💬 Telegram: <a href="https://t.me/DuskLive31" target="_blank" rel="noopener noreferrer" class="contact-link">DuskLive</a></p><p class="content-text">🎮 Discord: <a href="https://discord.gg/RPqhrDVMKp" target="_blank" rel="noopener noreferrer" class="contact-link">Присоединиться к серверу</a></p><p class="content-text" style="margin-top: 20px;">🌐 Социальные сети и другие ссылки скоро будут добавлены.</p>` }
+        };
+        
+        // ========== ТЕКСТЫ СТРАНИЦ (АНГЛИЙСКИЙ) ==========
+        const pagesEn = {
+            main: { title: "Main", text: `<p class="content-text">Welcome to the official Red Ghost website.</p><p class="content-text">Red Ghost is an independent game startup creating an atmospheric space game.</p><p class="content-text">We combine technology, creativity and passion for space to give players a unique experience.</p><p class="content-text">Follow the project development — a lot of interesting things ahead!</p>` },
+            project: { title: "Project", text: `<p class="content-text">THE LAST WAR is a project that combines technology and creativity.</p><p class="content-text">Here you can learn about the concept, development stages and future plans.</p><p class="content-text">So, what is already ready---<br>Map of propulsion systems with fuel chains.<br>Map of ships.<br>Maps of melee and ranged weapons.<br>Map of electronic warfare systems.<br>Maps of ship shield systems.<br>Map of ship energy systems.<br>Complete catalog of engines (not to be confused with maps).<br>Complete catalog of weapons (not to be confused with maps).</p><p class="content-text">What is currently being worked on---<br>Currently working on the lore and script of the game.<br>Working on the catalog of ships, their names in classifiers (players who buy them will name the ships themselves), dimensions and other technical characteristics.<br>That's all for now because there aren't enough hands to work on everything at once.</p>` },
+            media: { title: "Media", text: `<p class="content-text">Media information about ships, crew and game transport will be provided here.<br>Due to the fact that we don't have an artist right now, we cannot provide ship sketches.</p><div class="media-scroll-container" id="media-container"></div>` },
+            jobs: { title: "Jobs", text: `<p class="content-text">We are always looking for talented people to join the Red Ghost team.</p><p class="content-text">Current vacancies: developers, designers, managers.</p><p class="content-text">Currently required:<br>Artist -<br>Requirement: Knowledge of adobe photoshop!<br>3D designer -<br>Requirements: Knowledge and proficiency in programs like Blender, 3D Max, Maya, ZBrush.</p><p class="content-text">If you want to be part of the project — write to us through the "Contacts" section with the vacancy indication.</p>` },
+            startup: { title: "Startup", text: `<p class="content-text">Red Ghost is not just a project, but a startup with ambitious goals.</p><p class="content-text">Here you will find information about development, investments, partners and roadmap.</p><p class="content-text">Here you can help in any way to speed up work on the project.<br>Any help from you helps attract and hire more people to the project, as well as pay for their work.</p><p class="content-text">At this stage, you can help the project via the donation link of my channel<br><a href="https://www.donationalerts.com/r/duskst" class="support-button" target="_blank">Support the project</a></p>` },
+            contacts: { title: "Contacts", text: `<p class="content-text">You can contact me in any convenient way:</p><p class="content-text">📧 Email: <a href="mailto:supportdusk@gmail.com" class="contact-link">supportdusk@gmail.com</a></p><p class="content-text">💬 Telegram: <a href="https://t.me/DuskLive31" target="_blank" rel="noopener noreferrer" class="contact-link">DuskLive</a></p><p class="content-text">🎮 Discord: <a href="https://discord.gg/RPqhrDVMKp" target="_blank" rel="noopener noreferrer" class="contact-link">Join the server</a></p><p class="content-text" style="margin-top: 20px;">🌐 Social networks and other links will be added soon.</p>` }
+        };
+        
+        // ========== ТЕКСТЫ СТРАНИЦ (КИТАЙСКИЙ) ==========
+        const pagesZh = {
+            main: { title: "主页", text: `<p class="content-text">欢迎访问 Red Ghost 官方网站。</p><p class="content-text">Red Ghost 是一个独立的游戏初创公司，正在打造一款沉浸式太空游戏。</p><p class="content-text">我们结合技术、创意和对太空的热情，为玩家提供独特的体验。</p><p class="content-text">关注项目进展 — 前方有很多有趣的事情！</p>` },
+            project: { title: "项目", text: `<p class="content-text">THE LAST WAR 是一个结合技术和创意的项目。</p><p class="content-text">在这里你可以了解概念、开发阶段和未来计划。</p><p class="content-text">那么，已经准备好了什么---<br>推进系统与燃料链图。<br>飞船图。<br>近战和远程武器图。<br>电子战系统图。<br>飞船护盾系统图。<br>飞船能源系统图。<br>完整引擎目录（不要与地图混淆）。<br>完整武器目录（不要与地图混淆）。</p><p class="content-text">目前正在做什么---<br>目前正在制作游戏的世界观和剧本。<br>正在制作飞船目录、分类器中的名称（购买飞船的玩家将自行命名飞船）、尺寸和其他技术特性。<br>目前就这些，因为没有足够的人手同时处理所有事情。</p>` },
+            media: { title: "媒体", text: `<p class="content-text">这里将提供有关飞船、船员和游戏运输工具的媒体信息。<br>由于我们现在没有艺术家，我们无法提供飞船草图。</p><div class="media-scroll-container" id="media-container"></div>` },
+            jobs: { title: "招聘", text: `<p class="content-text">我们一直在寻找有才华的人加入 Red Ghost 团队。</p><p class="content-text">当前职位空缺：开发人员、设计师、经理。</p><p class="content-text">目前需要：<br>艺术家 -<br>要求：熟悉 adobe photoshop！<br>3D 设计师 -<br>要求：熟悉并掌握 Blender、3D Max、Maya、ZBrush 等软件。</p><p class="content-text">如果你想成为项目的一部分 — 请通过“联系方式”部分联系我们，并注明职位。</p>` },
+            startup: { title: "初创公司", text: `<p class="content-text">Red Ghost 不仅仅是一个项目，更是一个有着雄心勃勃目标的初创公司。</p><p class="content-text">这里将提供关于发展、投资、合作伙伴和路线图的信息。</p><p class="content-text">在这里你可以尽你所能帮助加快项目工作。<br>您的任何帮助都有助于吸引和雇佣更多人才加入项目，并支付他们的工作报酬。</p><p class="content-text">现阶段，您可以通过我的频道捐赠链接来帮助项目<br><a href="https://www.donationalerts.com/r/duskst" class="support-button" target="_blank">支持项目</a></p>` },
+            contacts: { title: "联系方式", text: `<p class="content-text">您可以通过任何方便的方式联系我：</p><p class="content-text">📧 电子邮件：<a href="mailto:supportdusk@gmail.com" class="contact-link">supportdusk@gmail.com</a></p><p class="content-text">💬 Telegram：<a href="https://t.me/DuskLive31" target="_blank" rel="noopener noreferrer" class="contact-link">DuskLive</a></p><p class="content-text">🎮 Discord：<a href="https://discord.gg/RPqhrDVMKp" target="_blank" rel="noopener noreferrer" class="contact-link">加入服务器</a></p><p class="content-text" style="margin-top: 20px;">🌐 社交网络和其他链接即将添加。</p>` }
+        };
+
+        let currentLang = 'ru';
+        let currentPageId = 'main';
+        let currentMediaItems = mediaItemsRu;
+        let currentPages = pagesRu;
+
+        function renderMediaGallery() {
+            const container = document.getElementById('media-container');
+            if (!container) return;
+            let html = '';
+            currentMediaItems.forEach((item, index) => {
+                html += `
+                    <div class="media-item" data-index="${index}">
+                        <div class="media-image">
+                            <img src="${item.img}" alt="${item.title}" onerror="this.src='images/gallery/placeholder.jpg'">
+                        </div>
+                        <div class="media-description">
+                            <h3>${item.title}</h3>
+                            <p>${item.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+            observeMediaItems();
+        }
+        
+        function observeMediaItems() {
+            const items = document.querySelectorAll('.media-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+            items.forEach(item => observer.observe(item));
+        }
+
+        function changeBackground(pageId) {
+            const bgImage = backgrounds[pageId];
+            if (bgImage) {
+                document.body.style.backgroundImage = `url('${bgImage}')`;
+            } else {
+                document.body.style.backgroundImage = "none";
+                document.body.style.backgroundColor = "#0a0a0a";
+            }
+        }
+
+        function loadPage(pageId) {
+            currentPageId = pageId;
+            const page = currentPages[pageId];
+            if (page) {
+                document.getElementById('page-title').textContent = page.title;
+                document.getElementById('page-text').innerHTML = page.text;
+                changeBackground(pageId);
+                if (pageId === 'media') {
+                    renderMediaGallery();
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            if (lang === 'ru') {
+                currentMediaItems = mediaItemsRu;
+                currentPages = pagesRu;
+                document.querySelectorAll('.nav-menu a')[0].textContent = 'Главная';
+                document.querySelectorAll('.nav-menu a')[1].textContent = 'Проект';
+                document.querySelectorAll('.nav-menu a')[2].textContent = 'Медиа';
+                document.querySelectorAll('.nav-menu a')[3].textContent = 'Вакансии';
+                document.querySelectorAll('.nav-menu a')[4].textContent = 'Стартап';
+                document.querySelectorAll('.nav-menu a')[5].textContent = 'Контакты';
+                document.querySelector('.footer-text').innerHTML = '© 2025 Red Ghost — игровой стартап. Разработка игры.';
+            } else if (lang === 'en') {
+                currentMediaItems = mediaItemsEn;
+                currentPages = pagesEn;
+                document.querySelectorAll('.nav-menu a')[0].textContent = 'Main';
+                document.querySelectorAll('.nav-menu a')[1].textContent = 'Project';
+                document.querySelectorAll('.nav-menu a')[2].textContent = 'Media';
+                document.querySelectorAll('.nav-menu a')[3].textContent = 'Jobs';
+                document.querySelectorAll('.nav-menu a')[4].textContent = 'Startup';
+                document.querySelectorAll('.nav-menu a')[5].textContent = 'Contacts';
+                document.querySelector('.footer-text').innerHTML = '© 2025 Red Ghost — game startup. Game development.';
+            } else {
+                currentMediaItems = mediaItemsZh;
+                currentPages = pagesZh;
+                document.querySelectorAll('.nav-menu a')[0].textContent = '主页';
+                document.querySelectorAll('.nav-menu a')[1].textContent = '项目';
+                document.querySelectorAll('.nav-menu a')[2].textContent = '媒体';
+                document.querySelectorAll('.nav-menu a')[3].textContent = '招聘';
+                document.querySelectorAll('.nav-menu a')[4].textContent = '初创公司';
+                document.querySelectorAll('.nav-menu a')[5].textContent = '联系方式';
+                document.querySelector('.footer-text').innerHTML = '© 2025 Red Ghost — 游戏初创公司。游戏开发。';
+            }
+            loadPage(currentPageId);
+        }
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                loadPage(pageId);
+            });
+        });
+
+        // Добавляем переключатель в подвал с красным стилем
+        const footerDiv = document.querySelector('.footer');
+        footerDiv.innerHTML = '<div class="footer-text">© 2025 Red Ghost — игровой стартап. Разработка игры.</div><div class="language-switcher"><span class="earth-icon">🌍</span> <button class="lang-btn" data-lang="ru">Русский</button> <button class="lang-btn" data-lang="en">English</button> <button class="lang-btn" data-lang="zh">中文</button></div>';
+        
+        // Инициализация языковых кнопок
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                setLanguage(this.getAttribute('data-lang'));
+                // Обновляем активный класс для кнопок
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Устанавливаем активную кнопку для русского языка по умолчанию
+        document.querySelector('.lang-btn[data-lang="ru"]').classList.add('active');
+        setLanguage('ru');
+    </script>
+</body>
+</html>
