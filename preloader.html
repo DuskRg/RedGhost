@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Заставка</title>
     <style>
-        /* Подключение твоего шрифта */
         @font-face {
             font-family: 'SabFont';
             src: url('fonts/sab.woff2') format('woff2');
@@ -13,19 +12,16 @@
             font-style: normal;
         }
 
-        /* Сброс отступов */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Затемнение скролла, пока заставка активна */
         body {
             overflow: hidden;
         }
 
-        /* Стили заставки */
         .preloader {
             position: fixed;
             top: 0;
@@ -40,7 +36,6 @@
             animation: fadeOut 0.8s ease-in-out 2.5s forwards;
         }
 
-        /* Контейнер для текста — КРАСНЫЙ НЕОН */
         .neon-text {
             font-family: 'SabFont', Arial, sans-serif;
             font-size: 10rem;
@@ -54,7 +49,6 @@
             animation: neonGlow 1.5s ease-out forwards;
         }
 
-        /* Анимация появления с КРАСНЫМ неоновым свечением */
         @keyframes neonGlow {
             0% {
                 opacity: 0;
@@ -81,7 +75,6 @@
             }
         }
 
-        /* Анимация исчезновения всей заставки */
         @keyframes fadeOut {
             0% {
                 opacity: 1;
@@ -93,7 +86,6 @@
             }
         }
 
-        /* Адаптация для мобильных устройств */
         @media (max-width: 768px) {
             .neon-text {
                 font-size: 2rem;
