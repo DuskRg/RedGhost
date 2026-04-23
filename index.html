@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Red Ghost - Официальный сайт</title>
     <style>
-        /* ========== ПОДКЛЮЧЕНИЕ ШРИФТОВ ========== */
         @font-face {
             font-family: 'SabFont';
             src: url('fonts/sab.woff2') format('woff2');
@@ -19,14 +18,12 @@
             font-weight: normal;
             font-style: normal;
         }
-        /* Третий шрифт — для заголовков страниц */
         @font-face {
             font-family: 'SabFont3';
             src: url('fonts/sab3.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
-        /* ========== ОБЩИЕ СТИЛИ ========== */
         * {
             margin: 0;
             padding: 0;
@@ -46,7 +43,6 @@
             background-color: #0a0a0a;
         }
 
-        /* Затемнение фона для читаемости текста */
         body::before {
             content: '';
             position: fixed;
@@ -58,7 +54,6 @@
             z-index: -1;
         }
 
-        /* ========== ШАПКА ========== */
         .header {
             padding: 20px 40px;
             border-bottom: 1px solid rgba(255, 0, 0, 0.3);
@@ -101,7 +96,6 @@
             text-shadow: 0 0 5px #ff0000, 0 0 10px #cc0000;
         }
 
-        /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
         .main-content {
             min-height: 70vh;
             padding: 60px 40px;
@@ -127,7 +121,6 @@
             line-height: 1.6;
         }
 
-        /* ========== СТИЛИ ДЛЯ МЕДИА (ГАЛЕРЕЯ) ========== */
         .media-scroll-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -187,12 +180,10 @@
             color: #ffffff;
         }
 
-        /* Чередование картинок */
         .media-item:nth-child(even) {
             flex-direction: row-reverse;
         }
 
-        /* ========== ПОДВАЛ ========== */
         .footer {
             border-top: 1px solid rgba(255, 0, 0, 0.3);
             padding: 20px 40px;
@@ -202,7 +193,6 @@
             font-size: 0.9rem;
         }
         
-        /* Кнопка поддержки */
         .support-button {
             display: inline-block;
             background: #ff0000;
@@ -218,7 +208,6 @@
             box-shadow: 0 0 10px #ff0000;
         }
         
-        /* Стили для переключателя языков (красный неон) */
         .language-switcher {
             margin-top: 15px;
             display: flex;
@@ -250,7 +239,6 @@
             border-color: #ff3333;
         }
 
-        /* ========== АДАПТАЦИЯ ========== */
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -288,7 +276,6 @@
                 font-size: 1rem;
             }
         }
-        /* ========== СТИЛИ ДЛЯ ССЫЛОК В КОНТАКТАХ ========== */
         .contact-link {
             color: #ff6666;
             text-decoration: none;
@@ -301,7 +288,6 @@
             border-bottom-color: #ff0000;
         }
         
-        /* ========== ЗАСТАВКА ========== */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -383,7 +369,6 @@
     </div>
 
     <script>
-        // ЗАСТАВКА: плавно исчезает через 2.5 секунды
         window.addEventListener('load', function() {
             setTimeout(function() {
                 let splash = document.getElementById('splash-screen');
@@ -396,7 +381,6 @@
             }, 2500);
         });
 
-        // ========== ФОНОВЫЕ ИЗОБРАЖЕНИЯ ==========
         const backgrounds = {
             main: 'images/backgrounds/main-bg.jpg',
             project: 'images/backgrounds/project-bg.jpg',
@@ -406,7 +390,6 @@
             contacts: 'images/backgrounds/contacts-bg.jpg'
         };
 
-        // ========== ДАННЫЕ ДЛЯ МЕДИА (НА РУССКОМ) ==========
         const mediaItemsRu = [
             { img: 'images/gallery/strekoza.jpg', title: 'Стрекоза', desc: 'Класс: Лёгкий истребитель разведки.<br>Назначение: разведка, перехват, быстрая атака.<br>Размеры: до 30 м.<br>Экипаж: 1 пилот.<br>Особенность: высокая манёвренность, малая заметность.' },
             { img: 'images/gallery/mul.jpg', title: 'МУЛ', desc: 'Класс: Транспортный корабль.<br>Назначение: перевозка грузов.<br>Размеры: 100–1000 м.<br>Экипаж: 1–5 человек (онлайн).<br>Особенность: модульная конструкция, средняя заметность.' },
@@ -434,7 +417,6 @@
             { img: 'images/gallery/annihilator.jpg', title: '未知', desc: '分类：无畏舰-母舰级 «未知».<br>类型：未知 + 无畏舰 + 攻城舰。<br>尺寸：根据被击落的电子战舰船解密，尺寸未知 — 级别 «未知».<br>质量：未知。<br>船员：未知。<br>任务：未知。<br>特点：未知。' }
         ];
 
-        // ========== ТЕКСТЫ СТРАНИЦ (РУССКИЙ) ==========
         const pagesRu = {
             main: { title: "Главная", text: `<p class="content-text">Добро пожаловать на официальный сайт Red Ghost.</p><p class="content-text">Red Ghost — независимый игровой стартап, создающий атмосферную игру о космосе.</p><p class="content-text">Мы объединяем технологии, творчество и страсть к космосу, чтобы подарить игрокам уникальный опыт.</p><p class="content-text">Следите за развитием проекта — впереди много интересного!</p>` },
             project: { title: "Проект", text: `<p class="content-text">THE LAST WAR — это проект, который объединяет технологии и творчество.</p><p class="content-text">Здесь ты сможешь узнать подробности о концепции, этапах разработки и планах на будущее.</p><p class="content-text">Итак. Что же уже готово---<br>Карта двигательных систем с топливными цепочками.<br>Карта кораблей.<br>Карты оружий ближнего и дальнего боя.<br>Карта систем РЭБ (радио-электронной борьбы).<br>Карты систем щитов кораблей.<br>Карта энергетических систем кораблей.<br>Полный каталог двигателей (не путать с картами).<br>Полный каталог вооружения (не путать с картами).</p><p class="content-text">Над чем работа идёт сейчас---<br>На данный момент идёт работа над лором и сценарием игры.<br>Идёт работа над каталогом кораблей, названиями их в классификаторах (а сами имена кораблям будут давать игроки их купившие), размерами и прочими ТТХ.<br>И пока что всё т.к. не хватает рук для работы над всем сразу.</p>` },
@@ -444,7 +426,6 @@
             contacts: { title: "Контакты", text: `<p class="content-text">Свяжитесь со мной можно любым удобным способом:</p><p class="content-text">📧 Email: <a href="mailto:supportdusk@gmail.com" class="contact-link">supportdusk@gmail.com</a></p><p class="content-text">💬 Telegram: <a href="https://t.me/DuskLive31" target="_blank" rel="noopener noreferrer" class="contact-link">DuskLive</a></p><p class="content-text">🎮 Discord: <a href="https://discord.gg/ssyBwDhWzC" target="_blank" rel="noopener noreferrer" class="contact-link">Присоединиться к серверу</a></p><p class="content-text" style="margin-top: 20px;">🌐 Социальные сети и другие ссылки скоро будут добавлены.</p>` }
         };
         
-        // ========== ТЕКСТЫ СТРАНИЦ (АНГЛИЙСКИЙ) ==========
         const pagesEn = {
             main: { title: "Main", text: `<p class="content-text">Welcome to the official Red Ghost website.</p><p class="content-text">Red Ghost is an independent game startup creating an atmospheric space game.</p><p class="content-text">We combine technology, creativity and passion for space to give players a unique experience.</p><p class="content-text">Follow the project development — a lot of interesting things ahead!</p>` },
             project: { title: "Project", text: `<p class="content-text">THE LAST WAR is a project that combines technology and creativity.</p><p class="content-text">Here you can learn about the concept, development stages and future plans.</p><p class="content-text">So, what is already ready---<br>Map of propulsion systems with fuel chains.<br>Map of ships.<br>Maps of melee and ranged weapons.<br>Map of electronic warfare systems.<br>Maps of ship shield systems.<br>Map of ship energy systems.<br>Complete catalog of engines (not to be confused with maps).<br>Complete catalog of weapons (not to be confused with maps).</p><p class="content-text">What is currently being worked on---<br>Currently working on the lore and script of the game.<br>Working on the catalog of ships, their names in classifiers (players who buy them will name the ships themselves), dimensions and other technical characteristics.<br>That's all for now because there aren't enough hands to work on everything at once.</p>` },
@@ -454,7 +435,6 @@
             contacts: { title: "Contacts", text: `<p class="content-text">You can contact me in any convenient way:</p><p class="content-text">📧 Email: <a href="mailto:supportdusk@gmail.com" class="contact-link">supportdusk@gmail.com</a></p><p class="content-text">💬 Telegram: <a href="https://t.me/DuskLive31" target="_blank" rel="noopener noreferrer" class="contact-link">DuskLive</a></p><p class="content-text">🎮 Discord: <a href="https://discord.gg/ssyBwDhWzC" target="_blank" rel="noopener noreferrer" class="contact-link">Join the server</a></p><p class="content-text" style="margin-top: 20px;">🌐 Social networks and other links will be added soon.</p>` }
         };
         
-        // ========== ТЕКСТЫ СТРАНИЦ (КИТАЙСКИЙ) ==========
         const pagesZh = {
             main: { title: "主页", text: `<p class="content-text">欢迎访问 Red Ghost 官方网站。</p><p class="content-text">Red Ghost 是一个独立的游戏初创公司，正在打造一款沉浸式太空游戏。</p><p class="content-text">我们结合技术、创意和对太空的热情，为玩家提供独特的体验。</p><p class="content-text">关注项目进展 — 前方有很多有趣的事情！</p>` },
             project: { title: "项目", text: `<p class="content-text">THE LAST WAR 是一个结合技术和创意的项目。</p><p class="content-text">在这里你可以了解概念、开发阶段和未来计划。</p><p class="content-text">那么，已经准备好了什么---<br>推进系统与燃料链图。<br>飞船图。<br>近战和远程武器图。<br>电子战系统图。<br>飞船护盾系统图。<br>飞船能源系统图。<br>完整引擎目录（不要与地图混淆）。<br>完整武器目录（不要与地图混淆）。</p><p class="content-text">目前正在做什么---<br>目前正在制作游戏的世界观和剧本。<br>正在制作飞船目录、分类器中的名称（购买飞船的玩家将自行命名飞船）、尺寸和其他技术特性。<br>目前就这些，因为没有足够的人手同时处理所有事情。</p>` },
@@ -570,21 +550,17 @@
             });
         });
 
-        // Добавляем переключатель в подвал с красным стилем
         const footerDiv = document.querySelector('.footer');
         footerDiv.innerHTML = '<div class="footer-text">© 2025 Red Ghost — игровой стартап. Разработка игры.</div><div class="language-switcher"><span class="earth-icon">🌍</span> <button class="lang-btn" data-lang="ru">Русский</button> <button class="lang-btn" data-lang="en">English</button> <button class="lang-btn" data-lang="zh">中文</button></div>';
         
-        // Инициализация языковых кнопок
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 setLanguage(this.getAttribute('data-lang'));
-                // Обновляем активный класс для кнопок
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
             });
         });
         
-        // Устанавливаем активную кнопку для русского языка по умолчанию
         document.querySelector('.lang-btn[data-lang="ru"]').classList.add('active');
         setLanguage('ru');
     </script>
